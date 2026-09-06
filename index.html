@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAN4103 DE - Teaching of Funding Proposals</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+        .header { background: linear-gradient(135deg, #1a5276, #2980b9); color: white; padding: 24px 40px 0; position: relative; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        .header h1 { font-size: 1.4em; }
+        .header .zh-title { font-size: 1em; opacity: 0.85; margin-top: 3px; }
+        .toggle-btn { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 7px 18px; border-radius: 25px; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: all 0.3s; }
+        .toggle-btn:hover { background: rgba(255,255,255,0.35); }
+        .dl-btn { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; padding: 7px 16px; border-radius: 25px; text-decoration: none; font-size: 0.85em; font-weight: 600; transition: all 0.3s; white-space: nowrap; }
+        .dl-btn:hover { background: rgba(255,255,255,0.35); }
+        .tabs { display: flex; gap: 0; margin-top: 18px; flex-wrap: wrap; }
+        .tab-btn { background: rgba(255,255,255,0.15); border: none; color: rgba(255,255,255,0.7); padding: 10px 28px; cursor: pointer; font-size: 0.9em; font-weight: 600; border-radius: 8px 8px 0 0; transition: all 0.2s; }
+        .tab-btn.active { background: #f0f2f5; color: #1a5276; }
+        .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; padding-top: 25px; }
+        .card { background: white; border-radius: 10px; padding: 28px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .card h2 { font-size: 1.1em; color: #1a5276; border-bottom: 2px solid #2980b9; padding-bottom: 7px; margin-bottom: 14px; }
+        .zh-label { color: #2980b9; font-weight: 600; font-size: 0.85em; margin-top: 6px; }
+        .info-grid { display: grid; grid-template-columns: 220px 1fr; gap: 7px 12px; }
+        .info-grid dt { font-weight: 600; color: #555; }
+        .info-grid dd { color: #333; }
+        .project-section { margin-bottom: 16px; }
+        .project-section h3 { font-size: 0.98em; color: #2980b9; margin-bottom: 5px; }
+        .project-section p, .project-section ul { font-size: 0.93em; color: #444; }
+        .project-section ul { margin-left: 18px; margin-top: 4px; }
+        .zh-text { color: #888; font-size: 0.86em; margin-top: 4px; line-height: 1.5; }
+        body.hide-zh .zh-text,
+        body.hide-zh .zh-label,
+        body.hide-zh .header .zh-title,
+        body.hide-zh .zh-foot { display: none; }
+        .footer { display: flex; justify-content: space-between; font-size: 0.93em; color: #555; padding-top: 14px; border-top: 1px solid #ddd; }
+        .zh-foot { color: #999; font-size: 0.83em; }
+        .answer { color: #1a5276; font-weight: 600; background: #eaf2f8; padding: 1px 4px; border-radius: 3px; }
+        .given { color: #888; font-style: italic; }
+        .form-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .form-table th, .form-table td { border: 1px solid #ccc; padding: 8px 12px; font-size: 0.9em; text-align: left; }
+        .form-table th { background: #eaf2f8; color: #1a5276; font-weight: 600; width: 200px; }
+        .form-table td { color: #555; }
+        .form-table .blank { color: #ccc; font-style: italic; }
+        .section-label { font-size: 0.95em; font-weight: 600; color: #1a5276; margin-top: 14px; margin-bottom: 6px; }
+        .findings-highlight { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 10px 14px; margin: 10px 0; font-size: 0.93em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div>
+                <h1>LAN4103_DE_Teaching of Funding Proposals</h1>
+                <div class="zh-title" id="zhMainTitle">LAN4103_DE_资助提案教学</div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button class="toggle-btn" onclick="toggleLang()">中文 / English</button>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(0)">Sample Evaluation Report</button>
+            <button class="tab-btn" onclick="switchTab(1)">Assignment Practice: Creative Spark</button>
+            <button class="tab-btn" onclick="switchTab(2)">Blank Funding Proposal Form</button>
+            <button class="tab-btn" onclick="switchTab(3)">Supplementary Notes for CA</button>
+            <button class="tab-btn" onclick="switchTab(4)">NLA Sample Mini-research Proposal</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- ==================== TAB 1: Sample Evaluation Report ==================== -->
+        <div class="tab-content active" id="tab0">
+            <div class="card">
+                <h2>Sample Evaluation Report</h2>
+                <div class="zh-label">评估报告范例</div>
+                <p style="font-size:0.9em; color:#666; margin-top:6px;">Professional Workplace Communication: Proposal and Report Writing (LAN4103)</p>
+                <div class="zh-text">专业职场沟通：提案及报告写作（LAN4103）</div>
+            </div>
+
+            <div class="card">
+                <h2>Evaluation Report on 'Old Clothes; New Looks' Project</h2>
+                <div class="zh-label">「旧衣；新貌」项目评估报告</div>
+
+                <div class="project-section">
+                    <h3>1. Introduction</h3>
+                    <p>The trend towards sustainable fashion has gained increasing attention in recent years, particularly among younger generations. However, many teenagers who lack upcycling skills struggle to transform old clothes into trendy designs. This mini-project, 'Old Clothes; New Looks', aims to enhance teenagers' upcycling techniques and inspire them to create fashionable outfits through hands-on workshops. This report aims to discuss the effectiveness of the project and give recommendations for the way forward.</p>
+                    <div class="zh-text">近年来，可持续时尚的趋势日益受到关注，尤其是在年轻一代中。然而，许多缺乏升级改造技能的青少年难以将旧衣服改造成时尚设计。这个名为「旧衣；新貌」的小项目旨在通过实践工作坊提升青少年的升级改造技术，并激励他们创造时尚服装。本报告旨在讨论项目的有效性，并为未来方向提出建议。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>2. Methodology</h3>
+                    <p><strong>2.1 Participants:</strong> Two sustainable fashion experts were recruited as instructors, while 20 teenagers from local community centres were invited to participate in the project.</p>
+                    <div class="zh-text"><strong>2.1 参与者：</strong>聘请了两名可持续时尚专家作为导师，并邀请了来自本地社区中心的20名青少年参与项目。</div>
+
+                    <p><strong>2.2 Implementation:</strong> From October to November 202-, four workshops were conducted by the instructors, during which they demonstrated how to repurpose old clothes, apply sewing techniques, and add decorative elements. Hands-on practice was also incorporated to allow participants to experiment with their own designs.</p>
+                    <div class="zh-text"><strong>2.2 实施：</strong>从十月到十一月202-年，导师共举办了四次工作坊，演示如何改造旧衣服、运用缝纫技术及添加装饰元素。工作坊亦设有实践环节，让参与者尝试自己的设计。</div>
+
+                    <p><strong>2.3 Evaluation:</strong> To collect data for evaluation, the participants had been invited to take part in a pre-project survey in September 202- about their clothing upcycling habits. In December 202-, a post-project survey was administered and focus group interviews were arranged for participants to share their experiences.</p>
+                    <div class="zh-text"><strong>2.3 评估：</strong>为收集评估数据，参与者于202-年九月参加了关于其旧衣改造习惯的项目前调查。202-年十二月进行了项目后调查，并安排了焦点小组访谈，让参与者分享他们的经验。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>3. Findings</h3>
+                    <div class="findings-highlight">
+                        <p>More than half of the respondents repurposed their old clothes regularly, which was a significant improvement from only 10% before the project. Almost one-third of them did so occasionally, compared to just 5% prior to the project.</p>
+                        <div class="zh-text">超过半数受访者定期改造旧衣服，较项目前仅10%有显著改善。近三分之一受访者偶尔进行改造，而项目前仅为5%。</div>
+                    </div>
+                    <div class="findings-highlight">
+                        <p>Moreover, the number of respondents who reported being 'quite confident' in creatively redesigning second-hand clothes into stylish outfits rose sharply from 40% to 80% after the project, while those reporting 'no confidence' fell dramatically from 60% to 0%.</p>
+                        <div class="zh-text">此外，表示「颇有信心」将二手衣物创意改造成时尚服装的受访者比例从40%急剧上升至80%，而表示「没有信心」的比例则从60%大幅下降至0%。</div>
+                    </div>
+                    <div class="findings-highlight">
+                        <p>It was also mentioned that the hands-on upcycling activities were engaging and enjoyable. Nevertheless, some participants expressed concerns about forgetting the sewing techniques over time without ongoing support. Furthermore, a few of them found it quite difficult to source quality second-hand clothes.</p>
+                        <div class="zh-text">参与者亦提到，实践性的升级改造活动引人入胜且令人愉快。然而，部分参与者表达了对在缺乏持续支持下会逐渐忘记缝纫技术的担忧。此外，少数参与者表示难以找到优质的二手衣物。</div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>4. Discussion</h3>
+                    <p>The findings indicate that the four workshops have effectively equipped participants with practical upcycling knowledge and significantly boosted their confidence in customising outdated garments. Through hands-on practice, the participants have applied various upcycling methods and used their creativity to turn old garments into stylish new pieces. In other words, participants have gained valuable skills in restyling old clothes.</p>
+                    <div class="zh-text">研究结果表明，四次工作坊有效地为参与者提供了实用的升级改造知识，并显著增强了他们定制过时服装的信心。通过实践，参与者运用了各种升级改造方法，并发挥创意将旧服装变成时尚新装。换言之，参与者获得了改造旧衣服的宝贵技能。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>5. Conclusion</h3>
+                    <p>The findings indicate that the project has been largely successful in enhancing teenagers' refashioning skills and raising their awareness of sustainable fashion. While similar workshops should continue to be offered, there is some room for improvement to make the project more effective.</p>
+                    <div class="zh-text">研究结果表明，该项目在提升青少年的旧衣改造技能及提高他们对可持续时尚的认识方面取得了很大成功。虽然应继续举办类似工作坊，但仍有一些改进空间，使项目更加有效。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>6. Recommendations</h3>
+                    <p>In view of the positive findings, it is recommended that similar upcycling workshops be offered for different skill levels so that more teenagers will benefit, while previous participants will have the opportunity to advance their creativity and design capabilities.</p>
+                    <div class="zh-text">鉴于正面的研究结果，建议为不同技能水平的青少年举办类似的升级改造工作坊，使更多青少年受益，同时让以往的参与者有机会提升创意和设计能力。</div>
+                    <p style="margin-top:8px;">At the same time, it is advisable that revision materials, such as sewing tutorial videos, be provided so that participants can review at their own pace. To support continued learning, a resource bank of old clothes for upcycling could be established to enable easier access to materials for practice and experimentation.</p>
+                    <div class="zh-text">与此同时，建议提供复习材料，如缝纫教学视频，以便参与者按自己的进度复习。为支持持续学习，可建立一个用于升级改造的旧衣资源库，方便获取练习和实验的材料。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 2: Assignment Practice: Creative Spark ==================== -->
+        <div class="tab-content" id="tab1">
+            <div class="card">
+                <h2>Assignment Practice: Creative Spark</h2>
+                <div class="zh-label">作业练习：Creative Spark</div>
+                <p style="font-size:0.9em; color:#666; margin-top:6px;">Professional Workplace Communication: Proposal and Report Writing (LAN4103)</p>
+                <div class="zh-text">专业职场沟通：提案及报告写作（LAN4103）</div>
+            </div>
+
+            <div class="card">
+                <h2>Task</h2>
+                <div class="zh-label">任务</div>
+                <p>You are Christy Cheung, a studio assistant at Creative Spark. You received an email from your supervisor, Jack Wong, about applying for funding from a government department. Referring to the email below and the extracts on pages 2–3, complete the funding proposal application in 250–300 words. You should explain your project with elaboration and use subtlety, tact, and sensitivity where appropriate.</p>
+                <div class="zh-text">你是 Creative Spark 的工作室助理张素贤（Christy Cheung）。你收到了上司黄杰克（Jack Wong）的电邮，关于向政府部门申请资助。请参考以下电邮及第2–3页的资料，在250–300字内完成资助提案申请。你应详细阐述你的项目，并在适当时运用巧妙、圆通及敏感的措辞。</div>
+            </div>
+
+            <div class="card">
+                <h2>Email from Jack Wong</h2>
+                <div class="zh-label">来自黄杰克的电邮</div>
+                <table class="form-table" style="margin-top:10px;">
+                    <tr><th style="width:140px;">Subject:</th><td>Seeking funding for Neon Glow Exhibition project</td></tr>
+                    <tr><th>From:</th><td>[JW] Jack Wong</td></tr>
+                    <tr><th>To:</th><td>Christy Cheung</td></tr>
+                    <tr><th>Date:</th><td>12 Dec 202- Mon 10:42</td></tr>
+                </table>
+                <div style="background:#f8f9fa; border-left:4px solid #2980b9; padding:14px 18px; margin-top:12px; font-size:0.93em; line-height:1.7;">
+                    <p>Dear Christy,</p>
+                    <p style="margin-top:8px;">As discussed in the last meeting, we are planning to organise a neon-themed exhibition with the goal of inspiring public preservation and appreciation of this local visual culture.</p>
+                    <p style="margin-top:8px;">With an estimated cost of around HK$400,000, we would like to apply for the funding scheme offered by the CreateSmart Initiative, which aims to promote design appreciation and cultural preservation in the community. Could you please help complete the funding proposal application form for my comments by this Friday?</p>
+                    <p style="margin-top:8px;">Thank you for your help.</p>
+                    <p style="margin-top:8px;">Regards,<br>Jack</p>
+                </div>
+                <div class="zh-text">
+                    <p>素贤，</p>
+                    <p>正如上次开会讨论，我们正计划举办一个以霓虹灯为主题的展览，目的是激发公众保存和欣赏这种本地视觉文化。</p>
+                    <p>预计费用约为40万港元，我们希望申请「创意智优计划」提供的资助 scheme，该计划旨在促进社区对设计的欣赏及文化保育。你能否在本周五前完成资助提案申请表给我审阅？</p>
+                    <p>谢谢你的帮忙。</p>
+                    <p>Jack</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <p style="font-size:0.93em; color:#444; margin-bottom:10px;">Below is some information you gathered for the funding application. Complete the funding proposal application with the information and your own ideas as needed.</p>
+                <div class="zh-text">以下是你为资助申请收集的资料。请根据这些资料及你自己的想法完成资助提案申请。</div>
+                <h2>Homepage of Creative Spark</h2>
+                <div class="zh-label">Creative Spark 主页</div>
+                <p style="font-size:0.88em; color:#888; margin-top:4px;">http://www.creativespark.com.hk/aboutus</p>
+                <table class="form-table" style="margin-top:10px;">
+                    <tr>
+                        <th style="width:160px;">Founding year</th>
+                        <td>2015</td>
+                        <th style="width:160px;">Business nature</th>
+                        <td>Local design studio</td>
+                    </tr>
+                    <tr>
+                        <th>Our target</th>
+                        <td>The Hong Kong public</td>
+                        <th>Our services</th>
+                        <td>
+                            <ul style="margin:0; padding-left:16px;">
+                                <li>Innovative art installations</li>
+                                <li>Exhibitions — inspire public appreciation of Hong Kong's visual culture</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <div class="zh-text">
+                    <dl class="info-grid" style="margin-top:8px;">
+                        <dt>成立年份：</dt><dd>2015</dd>
+                        <dt>业务性质：</dt><dd>本地设计工作室</dd>
+                        <dt>目标对象：</dt><dd>香港公众</dd>
+                        <dt>服务范围：</dt><dd>创新艺术装置；展览 — 激发公众欣赏香港的视觉文化</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Notes of Meeting</h2>
+                <div class="zh-label">会议记录</div>
+                <p style="font-size:0.9em; color:#555; margin-top:6px;">Below is some information you gathered for the funding application. Complete the funding proposal application with the information and your own ideas as needed.</p>
+                <div class="zh-text">以下是你为资助申请收集的资料。请根据这些资料及你自己的想法完成资助提案申请。</div>
+            </div>
+
+            <div class="card">
+                <h2>Your Handwritten Notes</h2>
+                <div class="zh-label">你的手写笔记</div>
+
+                <div style="background:#fffde7; border:1px solid #e0d68a; border-radius:8px; padding:16px 20px; margin-top:10px;">
+                    <p style="font-weight:700; font-size:1em; margin-bottom:8px;">Neon Glow Exhibition:</p>
+                    <ul style="margin-left:18px; font-size:0.93em; line-height:1.8;">
+                        <li><strong>Background:</strong> traditional neon signs disappearing in Hong Kong</li>
+                        <li><strong>Aim:</strong> to preserve iconic art form &amp; inspire public appreciation of local visual culture</li>
+                        <li><strong>Three stages (three weeks @)</strong>
+                            <ul style="margin-left:18px; margin-top:4px;">
+                                <li>Stage I: Inviting local neon artists; co-creation of artworks</li>
+                                <li>Stage II: Installing exhibition at public venue; interactive workshops</li>
+                                <li>Stage III: Conduct random interviews; evaluation</li>
+                            </ul>
+                        </li>
+                        <li><strong>Total amount needed:</strong> HK$400,000 <span style="font-style:italic; color:#c0392b;">[Christy, pls send a detailed breakdown as a separate attachment]</span></li>
+                    </ul>
+                </div>
+
+                <div style="background:#e8f5e9; border:1px solid #a5d6a7; border-radius:8px; padding:16px 20px; margin-top:14px;">
+                    <p style="font-weight:700; font-size:1em; margin-bottom:8px;">Benefits:</p>
+                    <ul style="margin-left:18px; font-size:0.93em; line-height:1.8;">
+                        <li>highlight craftsmanship &amp; cultural significance of neon art → rediscovery of this unique visual heritage</li>
+                        <li><span style="font-style:italic; color:#c0392b;">[Pls give one more benefit]</span></li>
+                        <li>same mission and values as CreateSmart Initiative → design appreciation &amp; cultural preservation</li>
+                    </ul>
+                </div>
+
+                <div style="background:#fce4ec; border:1px solid #ef9a9a; border-radius:8px; padding:16px 20px; margin-top:14px;">
+                    <p style="font-weight:700; font-size:1em; margin-bottom:8px;">Possible concerns:</p>
+                    <ul style="margin-left:18px; font-size:0.93em; line-height:1.8;">
+                        <li>Safety of neon installations</li>
+                        <li>Solution: compliance with electrical safety standards &amp; professional inspection before display <span style="font-style:italic; color:#c0392b;">[Pls elaborate on this]</span></li>
+                    </ul>
+                    <p style="margin-top:10px; font-style:italic; color:#c0392b;">[Pls give a concluding remark summarising the project aims and benefits]</p>
+                </div>
+
+                <div class="zh-text" style="margin-top:12px;">
+                    <p><strong>霓虹灯展览：</strong></p>
+                    <ul style="margin-left:18px;">
+                        <li><strong>背景：</strong>传统霓虹灯招牌在香港逐渐消失</li>
+                        <li><strong>目标：</strong>保存标志性的艺术形式，并激发公众欣赏本地视觉文化</li>
+                        <li><strong>三个阶段（每阶段三周）</strong>
+                            <ul style="margin-left:18px;">
+                                <li>第一阶段：邀请本地霓虹灯艺术家；共同创作艺术品</li>
+                                <li>第二阶段：在公共场所设置展览；互动工作坊</li>
+                                <li>第三阶段：进行随机访问；评估</li>
+                            </ul>
+                        </li>
+                        <li><strong>所需资金总额：</strong>400,000港元 <em>[请另附详细费用明细]</em></li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>益处：</strong></p>
+                    <ul style="margin-left:18px;">
+                        <li>突显霓虹灯艺术的工艺及文化意义 → 重新认识这种独特的视觉遗产</li>
+                        <li><em>[请提供另一项益处]</em></li>
+                        <li>与「创意智优计划」秉持相同的使命及价值观 → 促进设计欣赏及文化保育</li>
+                    </ul>
+                    <p style="margin-top:8px;"><strong>可能的关注事项：</strong></p>
+                    <ul style="margin-left:18px;">
+                        <li>霓虹灯装置的安全性</li>
+                        <li>解决方案：遵守电力安全标准并在展出前进行专业检查 <em>[请详细阐述]</em></li>
+                    </ul>
+                    <p style="margin-top:8px;"><em>[请提供总结项目目标及益处的结语]</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 3: Blank Funding Proposal Form ==================== -->
+        <div class="tab-content" id="tab2">
+            <div class="card">
+                <h2>Completing a Funding Proposal Application</h2>
+                <div class="zh-label">填写资助提案申请</div>
+                <p style="font-size:0.9em; color:#666; margin-top:6px;">Professional Workplace Communication: Proposal and Report Writing (LAN4103)</p>
+                <div class="zh-text">专业职场沟通：提案及报告写作（LAN4103）</div>
+            </div>
+
+            <div class="card">
+                <h2>Application Form</h2>
+                <div class="zh-label">申请表</div>
+                <p style="font-size:0.9em; color:#555; margin-top:6px;">Thank you for your interest in our funding scheme. Please fill in the details below to complete your application.</p>
+                <div class="zh-text">感谢您对我们的资助计划感兴趣。请填写以下详情以完成申请。</div>
+
+                <table class="form-table" style="margin-top:14px;">
+                    <tr>
+                        <th colspan="2" style="background:#2980b9; color:white; text-align:center;">CreateSmart Initiative<br>Funding Scheme</th>
+                    </tr>
+                    <tr>
+                        <th>Application no.:</th>
+                        <td class="blank">____________</td>
+                    </tr>
+                </table>
+
+                <table class="form-table" style="margin-top:10px;">
+                    <tr><th>Name of project:</th><td>Neon Glow Exhibition</td></tr>
+                    <tr><th>Organisation name:</th><td>Creative Spark</td></tr>
+                    <tr><th>Address:</th><td>Shop 12, 1/F, 23 Fat Cheung Road, Cheung Sha Wan</td></tr>
+                    <tr><th>Full name of contact person:</th><td>Cheung So Yin, Christy</td></tr>
+                    <tr><th>Post/Title:</th><td>Studio assistant</td></tr>
+                    <tr><th>Office no.:</th><td>2789 3456</td></tr>
+                    <tr><th>Office email:</th><td>christycheung@creativespark.com.hk</td></tr>
+                </table>
+
+                <div class="zh-text" style="margin-top:10px;">
+                    <dl class="info-grid">
+                        <dt>项目名称：</dt><dd>Neon Glow Exhibition</dd>
+                        <dt>机构名称：</dt><dd>Creative Spark</dd>
+                        <dt>地址：</dt><dd>长沙湾福荣街23号1楼12号铺</dd>
+                        <dt>联络人全名：</dt><dd>张素贤（Christy）</dd>
+                        <dt>职位：</dt><dd>工作室助理</dd>
+                        <dt>办公电话：</dt><dd>2789 3456</dd>
+                        <dt>办公电邮：</dt><dd>christycheung@creativespark.com.hk</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Funding Proposal Application Form</h2>
+                <div class="zh-label">资助提案申请表</div>
+
+                <div class="project-section">
+                    <p class="section-label">Organisation Information</p>
+                    <div class="zh-label">机构资料</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:60px;">[Write your organisation information here]</p>
+                    <div class="zh-text">[在此撰写你的机构资料]</div>
+                </div>
+
+                <div class="project-section">
+                    <p class="section-label">Project Aim</p>
+                    <div class="zh-label">项目目标</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:50px;">[State the project aim here]</p>
+                    <div class="zh-text">[在此阐述项目目标]</div>
+                </div>
+
+                <div class="project-section">
+                    <p class="section-label">Project Details</p>
+                    <div class="zh-label">项目详情</div>
+
+                    <p style="margin-top:8px;"><strong>a. Implementation</strong></p>
+                    <div class="zh-label">a. 执行计划</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:70px;">[Describe the implementation stages / phases here]</p>
+                    <div class="zh-text">[在此描述执行阶段]</div>
+
+                    <p style="margin-top:10px;"><strong>b. Amount of funding requested</strong></p>
+                    <div class="zh-label">b. 申请资助金额</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:40px;">[State the estimated total funding requested and breakdown reference]</p>
+                    <div class="zh-text">[在此说明预计申请的资助总额及费用明细参考]</div>
+                </div>
+
+                <div class="project-section">
+                    <p class="section-label">Justification for Funding</p>
+                    <div class="zh-label">资助理由</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:80px;">[Provide benefits, positive outcomes, and alignment with funder's mission]</p>
+                    <div class="zh-text">[在此提供益处、正面成果及与资助方使命的契合度]</div>
+                </div>
+
+                <div class="project-section">
+                    <p class="section-label">Supplementary Information</p>
+                    <div class="zh-label">补充资料</div>
+                    <p style="border:1px dashed #ccc; padding:12px; color:#ccc; font-style:italic; min-height:80px;">[Address potential concerns, risk mitigation/solutions, and concluding remarks]</p>
+                    <div class="zh-text">[在此处理潜在关注事项、风险缓减/解决方案及结语]</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="footer">
+                    <span><strong>Submission date:</strong> 15 Jun 202- <span class="zh-foot">提交日期：202-年6月15日</span></span>
+                    <span><strong>Signature:</strong> Christy Cheung <span class="zh-foot">签署：张素贤</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 4: Supplementary Notes for CA ==================== -->
+        <div class="tab-content" id="tab3">
+            <div class="card">
+                <h2>Follow the 4 Steps to Write Your 25% CA</h2>
+                <div class="zh-label">按照以下四个步骤撰写25%持续评估</div>
+            </div>
+
+            <div class="card">
+                <h2>Step 1: Writing Organisation Information (Unit 2)</h2>
+                <div class="zh-label">第一步：撰写机构资料（单元二）</div>
+                <p>For writing Organisation information, identify key components on the homepage and use the following grammatical structures:</p>
+                <div class="zh-text">撰写机构资料时，请从主页中识别关键信息，并运用以下语法结构：</div>
+                <ul>
+                    <li><strong>Structure 1:</strong> [past participle, "-ed"] + in + Establishment/Founding/Formation year</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>结构一：</strong>[过去分词] + in + 成立/创办年份</li></ul></div>
+                <ul>
+                    <li><strong>Structure 2:</strong> Organization name + is a + [business nature]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>结构二：</strong>机构名称 + is a + [业务性质]</li></ul></div>
+                <ul>
+                    <li><strong>Structure 3:</strong> specialising in / dedicated to / committed to / devoted to / focusing on + [action / area]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>结构三：</strong>specialising in / dedicated to / committed to / devoted to / focusing on + [行动/领域]</li></ul></div>
+                <ul>
+                    <li><strong>Structure 4:</strong> Additionally, / Also, + we organize / run / conduct / provide / offer + organization's mission / services / work</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>结构四：</strong>Additionally / Also + we organize / run / conduct / provide / offer + 机构使命/服务</li></ul></div>
+                <ul>
+                    <li><strong>Structure 5:</strong> [to + verb] + purpose of the mission / services / work</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>结构五：</strong>[to + 动词] + 使命/服务的目的</li></ul></div>
+
+                <h3 style="margin-top:14px; color:#1a5276;">Examples / 范例</h3>
+                <div class="project-section">
+                    <p><strong>Example 1 (InnoDesign):</strong> Formed in 2001, InnoDesign is a product design consultancy devoted to offering customised product prototyping services to local and international manufacturers.</p>
+                    <div class="zh-text"><strong>范例一（InnoDesign）：</strong>InnoDesign 成立于2001年，是一间产品设计顾问公司，致力于为本地及国际制造商提供定制产品原型服务。</div>
+                    <p>Also, we host community workshops to engage participants in hands-on product design activities.</p>
+                    <div class="zh-text">此外，我们举办社区工作坊，让参与者亲身参与产品设计活动。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 2 (StyleScope):</strong> Started in 2020, StyleScope Hong Kong is a fashion media company focusing on publishing fashion and beauty magazines for style enthusiasts.</p>
+                    <div class="zh-text"><strong>范例二（StyleScope）：</strong>StyleScope Hong Kong 成立于2020年，是一间时尚媒体公司，专注于为时尚爱好者出版时装及美容杂志。</div>
+                    <p>Additionally, we run reader engagement campaigns to invite fashion ideas or styling tips from readers.</p>
+                    <div class="zh-text">此外，我们举办读者互动活动，邀请读者分享时尚创意及穿搭贴士。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 3 (Island Esports):</strong> Established in 2013, Island Esports is a gaming association dedicated to nurturing esports talent in Hong Kong.</p>
+                    <div class="zh-text"><strong>范例三（Island Esports）：</strong>Island Esports 成立于2013年，是一个致力于培养香港电竞人才的电竞协会。</div>
+                    <p>Also, we offer a range of esport games and competitions to nurture positive gaming culture.</p>
+                    <div class="zh-text">此外，我们举办各类电竞游戏及比赛，以培育正面的游戏文化。</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Step 2: Writing Project Details (Unit 3)</h2>
+                <div class="zh-label">第二步：撰写项目详情（单元三）</div>
+                <p>For writing Project details (Implementation + Amount of funding requested), identify duration and action of each phase on Notes of meeting.</p>
+                <div class="zh-text">撰写项目详情（执行计划 + 申请资助金额）时，请从会议记录中识别各阶段的时间及行动。</div>
+
+                <h3 style="margin-top:12px; color:#2980b9;">a. Implementation Formula / 执行计划公式</h3>
+                <ul>
+                    <li>The project will be completed in three stages/phases, each lasting XXX months/weeks.</li>
+                </ul>
+                <div class="zh-text"><ul><li>项目将分三个阶段进行，每阶段为期XXX个月/周。</li></ul></div>
+                <ul>
+                    <li>In phase 1, we will [verb]..., in phase 2, we will [verb]...</li>
+                </ul>
+                <div class="zh-text"><ul><li>在第一阶段，我们将……；在第二阶段，我们将……</li></ul></div>
+                <ul>
+                    <li>In phase 3, / In the final phase, ...</li>
+                </ul>
+                <div class="zh-text"><ul><li>在第三阶段 / 在最后阶段，……</li></ul></div>
+
+                <h3 style="margin-top:12px; color:#2980b9;">b. Amount of Funding Requested Formula / 申请资助金额公式</h3>
+                <ul>
+                    <li>It is estimated that a total of $xxxxx will be required for the project. For details of the breakdown, please refer to the attachment.</li>
+                </ul>
+                <div class="zh-text"><ul><li>项目预计所需资金总额为$xxxxx。详情请参阅附件。</li></ul></div>
+                <ul>
+                    <li>(Alternative) The project is estimated to cost around $xxxxx. The details of the breakdown are attached for your information.</li>
+                </ul>
+                <div class="zh-text"><ul><li>（替代写法）项目预计成本约为$xxxxx。费用明细已附上供参考。</li></ul></div>
+
+                <h3 style="margin-top:14px; color:#1a5276;">Examples / 范例</h3>
+                <div class="project-section">
+                    <p><strong>Example 1 — Film / Drama Project:</strong></p>
+                    <p><strong>a. Implementation:</strong> The project will be completed in three phases, each lasting two months. In phase 1, we will finalise the screenplay and cast suitable actors.</p>
+                    <div class="zh-text"><strong>范例一 — 电影/戏剧项目：</strong></div>
+                    <div class="zh-text"><strong>a. 执行计划：</strong>项目将分三个阶段进行，每阶段为期两个月。在第一阶段，我们将敲定剧本并挑选合适的演员。</div>
+                    <p>In phase 2, necessary filming permits will be obtained before scheduling rehearsals. Filming will also be conducted to capture the scripted scenes.</p>
+                    <div class="zh-text">在第二阶段，将先取得所需的拍摄许可证，再安排排练，并进行拍摄以捕捉剧本中的场景。</div>
+                    <p>In the final phase, we will edit the footage and test the submission entry on multiple devices to ensure technical compatibility.</p>
+                    <div class="zh-text">在最后阶段，我们将剪辑影片，并在多个设备上测试提交条目，以确保技术兼容性。</div>
+                    <p><strong>b. Amount of funding requested:</strong> It is estimated that a total of $1,000,000 will be required for the project. For details of the breakdown, please refer to the attachment.</p>
+                    <div class="zh-text"><strong>b. 申请资助金额：</strong>项目预计所需资金总额为1,000,000港元。详情请参阅附件。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 2 — Neon Art Exhibition:</strong></p>
+                    <p><strong>a. Implementation:</strong> The project will be executed in three stages, each spanning three weeks. In stage 1, we will send invitations to local neon artists and co-create artworks with them.</p>
+                    <div class="zh-text"><strong>范例二 — 霓虹灯艺术展览：</strong></div>
+                    <div class="zh-text"><strong>a. 执行计划：</strong>项目将分三个阶段进行，每阶段为期三周。在第一阶段，我们将向本地霓虹灯艺术家发出邀请，并与他们共同创作艺术品。</div>
+                    <p>In stage 2, the exhibition will be installed at a public venue. Interactive workshops will also be incorporated.</p>
+                    <div class="zh-text">在第二阶段，展览将在公共场所设置，并加入互动工作坊。</div>
+                    <p>In the final stage, we will conduct random interviews with visitors and collect their feedback to evaluate the project's impact for future development.</p>
+                    <div class="zh-text">在最后阶段，我们将随机访问参观者并收集反馈，以评估项目对未来发展的影响。</div>
+                    <p><strong>b. Amount of funding requested:</strong> The project is estimated to cost around $400,000. The details of the breakdown are attached for your information.</p>
+                    <div class="zh-text"><strong>b. 申请资助金额：</strong>项目预计成本约为400,000港元。费用明细已附上供参考。</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Step 3: Writing Justification for Funding (Unit 4)</h2>
+                <div class="zh-label">第三步：撰写资助理由（单元四）</div>
+                <p>For writing Justification, identify 3 benefits on your handwritten notes. Use the following vocabulary and grammatical structures:</p>
+                <div class="zh-text">撰写资助理由时，请从手写笔记中识别三项益处，并运用以下词汇和语法结构：</div>
+                <ul>
+                    <li><strong>Benefit 1:</strong> The project will + provide / offer / feature / give + [Benefit 1]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>益处一：</strong>项目将 + 提供/展示/带来 + [益处一]</li></ul></div>
+                <ul>
+                    <li><strong>Elaboration:</strong> verb+ing (e.g. strengthening / encouraging) + [result / elaboration]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>阐述：</strong>动词+ing（如加强/促进）+ [结果/阐述]</li></ul></div>
+                <ul>
+                    <li><strong>Benefit 2:</strong> Additionally, / Moreover, / In addition, it / the project will + [Benefit 2]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>益处二：</strong>此外 / 而且 / 与此同时，该项目将 + [益处二]</li></ul></div>
+                <ul>
+                    <li><strong>Elaboration:</strong> which + [result / elaboration]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>阐述：</strong>which + [结果/阐述]</li></ul></div>
+                <ul>
+                    <li><strong>Alignment with Funder:</strong> Furthermore, / Also, this project's aim closely aligns with / is in line with the mission and values of [funder].</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>与资助方的契合：</strong>再者，本项目的目标与[资助方]的使命及价值观高度契合。</li></ul></div>
+
+                <h3 style="margin-top:14px; color:#1a5276;">Examples / 范例</h3>
+                <div class="project-section">
+                    <p><strong>Example 1 (Creative Industry):</strong> The competition will provide a platform for our emerging creators to showcase their work, strengthening the industry's creative pipeline.</p>
+                    <div class="zh-text"><strong>范例一（创意产业）：</strong>比赛将为新晋创作者提供展示作品的平台，加强业界的创意储备。</div>
+                    <p>In addition, the funding will enable us to secure essential production resources, which helps to ensure high-quality post-production work.</p>
+                    <div class="zh-text">此外，资助将使我们能够获取必要的制作资源，有助于确保高质量的后期制作工作。</div>
+                    <p>Furthermore, the aim of the project closely aligns with the mission of the Cultural and Creative Industries Development Agency. It will contribute greatly to the sustainable growth of Hong Kong's cultural and creative industries.</p>
+                    <div class="zh-text">再者，本项目的目标与创意香港的使命高度契合，将大大促进香港文化创意产业的可持续发展。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 2 (Neon Art & Heritage):</strong> The neon exhibition will highlight the craftsmanship and cultural significance of neon art, encouraging the public to rediscover this unique visual heritage.</p>
+                    <div class="zh-text"><strong>范例二（霓虹灯艺术与文化遗产）：</strong>霓虹灯展览将突出霓虹灯艺术的工艺及文化意义，鼓励公众重新认识这一独特的视觉遗产。</div>
+                    <p>Local artists will also have a platform to experiment with light-based media, which will foster creative exchange.</p>
+                    <div class="zh-text">本地艺术家亦将获得一个试验光媒体的平台，促进创意交流。</div>
+                    <p>Moreover, the project's aim is in line with the mission and values of the CreateSmart Initiative, resulting in promoting design appreciation and cultural preservation in the community.</p>
+                    <div class="zh-text">此外，本项目的目标与「创意智优计划」的使命及价值观一致，有助促进社区对设计的欣赏及文化保育。</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Step 4: Writing Supplementary Information (Unit 5)</h2>
+                <div class="zh-label">第四步：撰写补充资料（单元五）</div>
+                <p>For writing Supplementary information, identify the possible concern and solution and a concluding remark on your handwritten notes.</p>
+                <div class="zh-text">撰写补充资料时，请从手写笔记中识别可能的关注事项、解决方案及结语。</div>
+                <ul>
+                    <li><strong>1. Acknowledging Concern:</strong> We are aware that / We acknowledge / We understand that there might be concerns about ... [concern]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>1. 承认关注事项：</strong>我们明白 / 我们理解可能会有……的顾虑</li></ul></div>
+                <ul>
+                    <li><strong>2. Proposing Solution:</strong> However, we will ensure that... / However, please rest assured that we will... [solution]</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>2. 提出解决方案：</strong>然而，我们将确保…… / 请放心，我们将……</li></ul></div>
+                <ul>
+                    <li><strong>3. Concluding Remark:</strong> We are confident that the project / [verb-ing phrase], which [project aim], will [summary of benefits / positive outcome].</li>
+                </ul>
+                <div class="zh-text"><ul><li><strong>3. 结语：</strong>我们坚信，该项目 / [动词+ing短语]，[项目目标]，将[益处/正面成果的总结]。</li></ul></div>
+
+                <h3 style="margin-top:14px; color:#1a5276;">Examples / 范例</h3>
+                <div class="project-section">
+                    <p><strong>Example 1 — Esports Tournament (Technical Server Lag):</strong></p>
+                    <p>We are aware that there might be concerns about technical issues, such as server lag during the tournament. However, please rest assured that we will secure high-performance servers and conduct pre-event stress tests so that a smooth experience for all participants will be guaranteed.</p>
+                    <div class="zh-text"><strong>范例一 — 电竞比赛（服务器延迟技术问题）：</strong></div>
+                    <div class="zh-text">我们明白可能会有技术问题的顾虑，例如比赛期间的服务器延迟。请放心，我们将确保使用高性能服务器，并在活动前进行压力测试，以保证所有参与者享有流畅的体验。</div>
+                    <p>We are confident that organising the esports tournament, which showcases the outstanding performance of local gamers, will foster a positive perception of competitive gaming among the public, gaining more support from society.</p>
+                    <div class="zh-text">我们坚信，举办是次电竞比赛，展示本地电竞选手的出色表现，将促进公众对竞技游戏的正面看法，赢得社会更多支持。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 2 — EV Charging Station Network (Equipment Safety):</strong></p>
+                    <p>We understand that there might be concerns about the safety of the charging stations. However, we will ensure regular check-ups and maintenance of the charging equipment so that the risk of malfunctions can be minimized.</p>
+                    <div class="zh-text"><strong>范例二 — 电动车充电站网络（设备安全）：</strong></div>
+                    <div class="zh-text">我们理解可能会对充电站的安全性有所顾虑。然而，我们将确保定期检查及保养充电设备，以尽量减低故障风险。</div>
+                    <p>We are confident that installing the EV charging station network, which promotes sustainable transportation and a greener future, will have a significant and far-reaching impact on environmental conservation, promoting the adoption of EVs in the community.</p>
+                    <div class="zh-text">我们坚信，安装电动车充电网络，推动可持续交通及更绿色的未来，将对环保产生深远影响，促进社区采用电动车。</div>
+                </div>
+                <div class="project-section">
+                    <p><strong>Example 3 — Neon Installation Exhibition (Electrical Safety):</strong></p>
+                    <p>We acknowledge that there might be concerns about the safety of neon installations. However, we are committed to ensuring that all artworks comply with electrical safety standards and undergo professional inspection before being displayed in order to minimise risks.</p>
+                    <div class="zh-text"><strong>范例三 — 霓虹灯装置展览（电力安全）：</strong></div>
+                    <div class="zh-text">我们承认可能会对霓虹灯装置的安全性有所顾虑。然而，我们致力于确保所有艺术品符合电力安全标准，并在展出前进行专业检查，以尽量减低风险。</div>
+                    <p>We are confident that the neon exhibition, which supports local creative talent, will generate meaningful cultural impact and inspire interest in preserving the city's design legacy.</p>
+                    <div class="zh-text">我们坚信，支持本地创意人才的霓虹灯展览，将产生有意义的文化影响，并激发人们保存城市设计遗产的兴趣。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 5: NLA Sample Mini-research Proposal ==================== -->
+        <div class="tab-content" id="tab4">
+            <div class="card">
+                <h2>NLA Sample Mini-research Proposal</h2>
+                <div class="zh-label">NLA 研究提案范例</div>
+                <p style="font-size:0.9em; color:#666; margin-top:6px;">Professional Workplace Communication: Proposal and Report Writing (LAN4103)</p>
+                <div class="zh-text">专业职场沟通：提案及报告写作（LAN4103）</div>
+            </div>
+
+            <div class="card">
+                <h2>Sample Mini-research Proposal on the Launch of Disposable Paper Water Bottle for Water Manufacturers</h2>
+                <div class="zh-label">为瓶装水厂商推出一次性纸水瓶的研究提案范例</div>
+
+                <div class="project-section">
+                    <h3>1. Background</h3>
+                    <p>Plastic bottles are a major source of environmental pollution. According to the Organisation for Economic Co-operation and Development (OECD), "Plastic waste has more than doubled, from 156 Mt in 2000 to 353 Mt in 2019" (OECD, 2022, p. 14), and the majority comes from packaging, including single-use plastic bottles (OECD, 2022). Apart from environmental concerns, microplastics could also pose major health risks, such as cancers (Kumar et al., 2022). To reduce plastic bottle consumption, a product design studio has launched a disposable paper bottle designed for water manufacturers.</p>
+                    <div class="zh-text">塑料瓶是环境污染的主要来源。根据经济合作与发展组织（OECD）的数据，「塑料废物从2000年的1.56亿吨增加到2019年的3.53亿吨，增长了一倍多」（OECD, 2022, p. 14），其中大部分来自包装，包括一次性塑料瓶（OECD, 2022）。除了环境问题外，微塑料也可能带来重大健康风险，如癌症（Kumar et al., 2022）。为减少塑料瓶的消耗，一家产品设计工作室推出了一款专为瓶装水厂商设计的一次性纸水瓶。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>2. Objective</h3>
+                    <p>This mini-research aims to find out the views and attitudes of water manufacturers and consumers towards the paper bottle design. The findings will offer a reference for other beverage companies to consider adopting sustainable packaging.</p>
+                    <div class="zh-text">本迷你研究旨在了解瓶装水厂商及消费者对纸水瓶设计的看法和态度。研究结果将为其他饮料公司考虑采用可持续包装提供参考。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>3. Methodology</h3>
+                    <p>The mini-research will be conducted between 15–30 September 202-. An online questionnaire will be sent to around 20 local water manufacturers using the paper bottle packaging. About 50 consumers will also be invited to complete an online questionnaire. With prior approval from some convenience stores, I will visit them at agreed times and share with consumers a QR code linking to an online questionnaire.</p>
+                    <div class="zh-text">迷你研究将于202-年9月15日至30日期间进行。一份网上问卷将发送给约20家使用纸水瓶包装的本地瓶装水厂商。亦将邀请约50名消费者填写网上问卷。在获得部分便利店事先批准后，我将按时到访并向消费者分享链接至网上问卷的二维码。</div>
+                </div>
+
+                <div class="project-section">
+                    <h3>References</h3>
+                    <p style="font-size:0.9em; line-height:1.8;">
+                        Kumar, R., Manna, C., Padha, S., Verma, A., Sharma, P., Dhar, A., Ghosh, A., & Bhattacharya, P. (2022). Micro(nano)plastics pollution and human health: How plastics can induce carcinogenesis to humans? <em>Chemosphere, 298</em>, 134267. https://doi.org/10.1016/j.chemosphere.2022.134267<br><br>
+                        Organisation for Economic Co-operation and Development. (2022). <em>Global plastics outlook: Economic drivers, environmental impacts and policy options</em>. OECD Publishing. https://doi.org/10.1787/de747aef-en
+                    </p>
+                    <div class="zh-text">
+                        <ul>
+                            <li>Kumar, R., Manna, C., Padha, S., Verma, A., Sharma, P., Dhar, A., Ghosh, A., & Bhattacharya, P. (2022). Micro(nano)plastics pollution and human health: How plastics can induce carcinogenesis to humans? <em>Chemosphere, 298</em>, 134267.</li>
+                            <li>Organisation for Economic Co-operation and Development. (2022). <em>Global plastics outlook: Economic drivers, environmental impacts and policy options</em>. OECD Publishing.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showZh = true;
+        function toggleLang() {
+            showZh = !showZh;
+            document.body.classList.toggle('hide-zh', !showZh);
+        }
+        function switchTab(idx) {
+            document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+            document.querySelectorAll('.tab-content').forEach((c, i) => c.classList.toggle('active', i === idx));
+        }
+    </script>
+</body>
+</html>
